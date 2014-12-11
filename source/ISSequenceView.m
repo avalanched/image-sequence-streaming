@@ -10,6 +10,8 @@
 #import <CoreVideo/CoreVideo.h>
 #import "TargetConditionals.h"
 
+#import <OpenGLES/ES2/glext.h>
+
 #pragma mark -
 #pragma mark ISSequenceView
 #pragma mark -
