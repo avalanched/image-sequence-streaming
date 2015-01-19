@@ -53,7 +53,7 @@
         
         _displayLink = [[CADisplayLink displayLinkWithTarget:self selector:@selector(refreshDisplay:)] retain];
         _displayLink.frameInterval = refreshInterval;
-        [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+        [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     }
     return self;
 }
