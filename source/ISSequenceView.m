@@ -652,8 +652,9 @@ static const GLfloat _kISSequenceViewUVs[] =
     {
         _currentBuffer = 0;
     }
-    
-    glViewport(0, 0, self.bounds.size.width, self.bounds.size.height);
+	
+    CGFloat contentsScale = self.layer.contentsScale;
+    glViewport(0, 0, self.bounds.size.width*contentsScale, self.bounds.size.height*contentsScale);
         
     glClear(GL_COLOR_BUFFER_BIT);
     
