@@ -784,19 +784,19 @@ static const GLfloat _kISSequenceViewUVs[] =
     {
         if (newFrame >= _range.location + _range.length)
         {
+            [self pause];
             if (_delegate && [_delegate respondsToSelector:@selector(sequencePlaybackViewFinishedPlayback:)])
             {
                 [_delegate sequencePlaybackViewFinishedPlayback:self];
             }
-            [self pause];
         }
         else if (newFrame < _range.location)
         {
+            [self pause];
             if (_delegate && [_delegate respondsToSelector:@selector(sequencePlaybackViewFinishedPlayback:)])
             {
                 [_delegate sequencePlaybackViewFinishedPlayback:self];
             }
-            [self pause];
         }
     }
     
