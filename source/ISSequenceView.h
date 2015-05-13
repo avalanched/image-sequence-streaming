@@ -48,6 +48,9 @@
 - (int)refreshInterval;
 - (ISSequence*)sequence;
 
+- (void) pauseDisplayLink;
+- (void) resumeDisplayLink;
+
 @end
 
 #pragma mark -
