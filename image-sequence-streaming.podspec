@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "image-sequence-streaming"
-  s.version      = "0.3.0"
+  s.version      = "0.4.0"
   s.summary      = "Interactive image sequences with small memory footprint, nearly unlimited length, and lighting fast playback."
 
   s.description  = <<-DESC
@@ -74,7 +74,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/aceontech/image-sequence-streaming.git", :tag => "v0.3.0" }
+  s.source       = { :git => "https://github.com/aceontech/image-sequence-streaming.git", :tag => "v0.4.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
