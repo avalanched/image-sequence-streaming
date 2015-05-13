@@ -319,8 +319,9 @@ static const GLfloat _kISSequenceViewUVs[] =
 
 - (void)refreshDisplay
 {
-    [self update];
-    [self redraw];
+    if ([self update]) {
+        [self redraw];
+    }
 }
 
 #pragma mark -
