@@ -24,6 +24,7 @@
     CADisplayLink* _displayLink;
     id _target;
     SEL _action;
+    int _refreshinterval;
 }
 @property(nonatomic, readonly)CADisplayLink* displayLink;
 @property(nonatomic, assign)id target;
@@ -33,6 +34,7 @@
               action:(SEL)action
      refreshInterval:(int)refreshInterval;
 
+- (void) addToRunLoop;
 - (void)shutdown;
 
 @end
@@ -42,6 +44,7 @@
 @synthesize target = _target;
 @synthesize action = _action;
 
+
 - (id)initWithTarget:(id)target
               action:(SEL)action
      refreshInterval:(int)refreshInterval
@@ -50,12 +53,18 @@
     {
         _target = target;
         _action = action;
-        
-        _displayLink = [[CADisplayLink displayLinkWithTarget:self selector:@selector(refreshDisplay:)] retain];
-        _displayLink.frameInterval = refreshInterval;
-        [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+        _refreshinterval = refreshInterval;
+
+        [self addToRunLoop];
     }
     return self;
+}
+
+- (void) addToRunLoop {
+    _displayLink = [[CADisplayLink displayLinkWithTarget:self selector:@selector(refreshDisplay:)] retain];
+    _displayLink.frameInterval = _refreshinterval;
+    [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+
 }
 
 - (void)refreshDisplay:(CADisplayLink*)link
@@ -239,6 +248,13 @@ static const GLfloat _kISSequenceViewUVs[] =
         [self redraw];
     }
     return self;
+}
+
+- (void) pauseDisplayLink {
+    [_displayLink shutdown];
+}
+- (void) resumeDisplayLink {
+    [_displayLink addToRunLoop];
 }
 
 - (void)dealloc
@@ -784,19 +800,19 @@ static const GLfloat _kISSequenceViewUVs[] =
     {
         if (newFrame >= _range.location + _range.length)
         {
+            [self pause];
             if (_delegate && [_delegate respondsToSelector:@selector(sequencePlaybackViewFinishedPlayback:)])
             {
                 [_delegate sequencePlaybackViewFinishedPlayback:self];
             }
-            [self pause];
         }
         else if (newFrame < _range.location)
         {
+            [self pause];
             if (_delegate && [_delegate respondsToSelector:@selector(sequencePlaybackViewFinishedPlayback:)])
             {
                 [_delegate sequencePlaybackViewFinishedPlayback:self];
             }
-            [self pause];
         }
     }
     
